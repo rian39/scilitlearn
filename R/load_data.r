@@ -4,19 +4,19 @@ library(dplyr)
 library(tidyr)
 library(tidytext)
 library(ggplot2)
+library(bibliometrix)
 data('stop_words')
 
 #' Load tsv file from Web of Science
 #'
 #' This function assumes that all the files have been joined, and all quote marks removed
 #' @param file: the tsv of WoS references
-#' @keywords 
+#' @keywords tsv 
 #' @export
 #' @examples
 #' load_data()
  
 load_data  <- function(file) {
-    data('stop_words')
     wos = read_delim(file, trim_ws = TRUE, quote='"', delim='\t', col_names = TRUE)
     wos  <<-  unique(wos)
     return(wos)
@@ -197,32 +197,38 @@ keyword_count_top  <- function(wos,n=5){
  }
 
 
-#' Title bigrams separated and filtered for stopwords
+#' Aggregate cited references 
 #'
 #' @param wos: the dataframe of references
-#' @keywords title
+#' @keywords citations
 #' @export
 #' @examples
-#' title_bigrams_filtered()
-wos_refs  <- wos %>% select(TI,DT, PY,CR) %>%
-    separate(CR, into = paste('ref', 1:40, sep='_'), sep=';', extra = 'drop', fill='right') %>%
-    gather(key=r, value= ref, ref_1:ref_40) %>%
-    transform(ref = str_trim(str_to_lower(ref))) %>%  
-    drop_na()
-head(wos_refs)
+#' cited_references_gather()
 
-#' Title bigrams separated and filtered for stopwords
+cited_references_gather  <- function(wos) {
+    wos_refs  <- wos %>% select(TI,DT, PY,CR) %>%
+        separate(CR, into = paste('ref', 1:40, sep='_'), sep=';', extra = 'drop', fill='right') %>%
+        gather(key=r, value= ref, ref_1:ref_40) %>%
+        transform(ref = str_trim(str_to_lower(ref))) %>%  
+        drop_na()
+    return(wos_refs)
+}
+
+#' Counted cited references
 #'
 #' @param wos: the dataframe of references
-#' @keywords title
+#' @keywords citations
 #' @export
 #' @examples
-#' title_bigrams_filtered()
-wos_refs_count  <- wos_refs %>% select(PY, ref) %>%
-    group_by(PY) %>%
-    count(ref, sort=TRUE) %>%
-    top_n(20) %>%
-    filter(n > 5) %>%
-    arrange(PY)
-wos_refs_count
+#' cited_reference_count()
+
+cited_reference_count  <-  function(wos) {
+    wos_refs_count  <- wos_refs %>% select(PY, ref) %>%
+        group_by(PY) %>%
+        count(ref, sort=TRUE) %>%
+        top_n(20) %>%
+        filter(n > 5) %>%
+        arrange(PY)
+    return(wos_refs_count)
+}
 
