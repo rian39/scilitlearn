@@ -17,7 +17,7 @@ data('stop_words')
 #' load_data()
  
 load_data  <- function(file) {
-    wos = read_delim(file, trim_ws = TRUE, quote='"', delim='\t', col_names = TRUE)
+    wos = readr::read_delim(file, trim_ws = TRUE, quote='"', delim='\t', col_names = TRUE)
     wos  <<-  unique(wos)
     return(wos)
 }
