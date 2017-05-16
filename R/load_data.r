@@ -26,6 +26,10 @@ load_data  <- function(file) {
 #' @param wos: the dataframe of references
 #' @keywords years
 #' @export
+#' @importFrom dplyr "%>%"
+#' @importFrom dplyr select
+#' @importFrom dplyr count
+#' @importFrom dplyr arrange
 #' @examples
 #' year_count()
 
@@ -40,6 +44,15 @@ year_count  <- function(wos) {
 #' @param n: the number of authors to return
 #' @keywords authors
 #' @export
+#' @importFrom dplyr "%>%"
+#' @importFrom dplyr select
+#' @importFrom dplyr count
+#' @importFrom dplyr arrange
+#' @importFrom dplyr transmute
+#' @importFrom tidyr separate
+#' @importFrom tidyr gather
+#' @importFrom stringr str_trim
+#' @importFrom stringr str_to_lower
 #' @examples
 #' top_authors()
  
@@ -48,7 +61,7 @@ top_authors  <- function(wos, n = 30) {
         separate(AU, into = paste('au', 1:10, sep='_'),
                  sep=';', extra = 'drop', fill='right') %>%
         gather(key=AU, value = author, au_1:au_10, na.rm = TRUE) %>%
-        transform(author = str_trim(str_to_lower(author))) %>%  
+        transmute(author = str_trim(str_to_lower(author))) %>%  
         count(author, sort=TRUE)
     return(authors_top)
 }
