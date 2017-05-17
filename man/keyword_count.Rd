@@ -2,7 +2,7 @@
 % Please edit documentation in R/load_data.r
 \name{keyword_count}
 \alias{keyword_count}
-\title{Count of top keywrods}
+\title{Count of top keywords}
 \usage{
 keyword_count(wos)
 }
@@ -10,7 +10,7 @@ keyword_count(wos)
 \item{wos:}{the dataframe of references}
 }
 \description{
-Count of top keywrods
+Count of top keywords
 }
 \examples{
 keyword_count()

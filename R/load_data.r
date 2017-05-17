@@ -5,7 +5,6 @@ library(tidyr)
 library(tidytext)
 library(ggplot2)
 library(bibliometrix)
-data('stop_words')
 
 #' Load tsv file from Web of Science
 #'
@@ -71,10 +70,14 @@ top_authors  <- function(wos, n = 30) {
 #' @param wos: the dataframe of references
 #' @keywords authors
 #' @export
+#' @importFrom dplyr anti_join 
+#' @importFrom tidytext unnest_tokens
+#' @import stringr
 #' @examples
 #' title_words()
  
 title_words  <- function(wos) { 
+    data('stop_words')
     title_words  <- wos %>% select(TI, AU, PY) %>%
         unnest_tokens(word, TI) %>%
         mutate(word = str_extract(word, "[a-zA-Z']+")) %>% 
@@ -89,6 +92,7 @@ title_words  <- function(wos) {
 #' @param wos: the dataframe of references
 #' @keywords title
 #' @export
+#' @import stringr
 #' @examples
 #' title_bigrams()
 
@@ -103,6 +107,7 @@ title_bigrams  <- function(wos) {
 #' @param wos: the dataframe of references
 #' @keywords title
 #' @export
+#' @import dplyr
 #' @examples
 #' title_bigrams_separated()
 
@@ -117,10 +122,12 @@ title_bigrams_separated  <- function(wos) {
 #' @param wos: the dataframe of references
 #' @keywords title
 #' @export
+#' @import tidytext
 #' @examples
 #' title_bigrams_filtered()
 
 title_bigrams_filtered  <- function(wos) {
+    data('stop_words')
     bigrams_filtered <- title_bigrams_separated(wos) %>%
       filter(!word1 %in% stop_words$word) %>%
       filter(!word2 %in% stop_words$word)
@@ -136,7 +143,7 @@ title_bigrams_filtered  <- function(wos) {
 #' title_bigrams_count()
 
 title_bigrams_count <- function(wos) {
-    bigram_count  <-  bigrams_filtered(wos) %>% count(word1, word2, sort = TRUE)
+    bigram_count  <-  title_bigrams_filtered(wos) %>% count(word1, word2, sort = TRUE)
     return(bigram_count )
 }
 
@@ -160,7 +167,7 @@ keywords  <- function(wos) {
 }
 
 
-#' Count of top keywrods
+#' Count of top keywords
 #'
 #' @param wos: the dataframe of references
 #' @keywords keyword
@@ -169,7 +176,7 @@ keywords  <- function(wos) {
 #' keyword_count()
 
 keyword_count  <- function(wos){
-    key_count  <- wos_keys %>% select(PY, keywd) %>%
+    key_count  <- keywords(wos) %>% select(PY, keywd) %>%
         count(keywd, sort=TRUE)
     return(key_count)
 }
@@ -184,7 +191,7 @@ keyword_count  <- function(wos){
 #' keyword_count_top()
 
 keyword_count_top  <- function(wos,n=5){
-    wos_key_count  <- wos_keys %>%
+    wos_key_count  <- keywords(wos) %>%
         select(TI, PY, keywd) %>%
         group_by(PY) %>% 
         count(keywd,  sort = TRUE)  %>%
@@ -236,7 +243,7 @@ cited_references_gather  <- function(wos) {
 #' cited_reference_count()
 
 cited_reference_count  <-  function(wos) {
-    wos_refs_count  <- wos_refs %>% select(PY, ref) %>%
+    wos_refs_count  <- cited_references_gather %>% select(PY, ref) %>%
         group_by(PY) %>%
         count(ref, sort=TRUE) %>%
         top_n(20) %>%
