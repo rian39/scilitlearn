@@ -12,3 +12,6 @@
 ## Wed 17 May 2017 23:03:01 BST
 - did more on the import stuff. @import pkg seems better than @importFrom pkg fn
 - still showing errors - need to sort this out
+
+## Fri 19 May 2017 23:17:07 BST
+- breaking file into separate areas -- authors, titles, keywords, abstracts, etc and testing these
