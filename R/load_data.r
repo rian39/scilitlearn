@@ -10,6 +10,8 @@
 load_data  <- function(file) {
     wos = readr::read_delim(file, trim_ws = TRUE, quote='"', delim='\t', col_names = TRUE)
     wos  <-  unique(wos)
+    cat('loaded ', nrow(wos), ' references\n')
+    print(wos %>% select(DT) %>% count(DT, sort = TRUE))
     return(wos)
 }
 
