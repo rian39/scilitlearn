@@ -1,12 +1,23 @@
-library(tidytext)
-library(ggplot2)
-library(topicmodels)
-library(dplyr)
+construct_stopword_list  <- function(extra_stopwords) {
+    data(tidytext::stop_words)
 
-#wos = load_data('~/R/scilitlearn/sample.tsv')
+    my_stopwords <- bind_rows(stop_words,
+                              data_frame(word = c('communication', 'social', 'media',
+                                                  'study', 'article', 'research',
+                                                  'analysis', 'explores', 'scholars',
+                                                  'paper', 'investigates',
+                                                  'analyzes', 'examines', 
+                                                  'analyses', extra_stopwords),
+                                         lexicon= 'custom'))
+
+    cat('adding stopwords: ', extra_stopwords, '\n')
+    return(my_stopwords)
+}
 
 #' Topic models for abstracts
 #' @param wos: the dataframe of references
+#' @param extra_stopwords: any extra stopwords to exclude
+#' @param topic_count: the numbers of topics; default is 20
 #' @keywords abstracts
 #' @export
 #' @import dplyr
@@ -15,30 +26,24 @@ library(dplyr)
 #' @examples
 #' abstract_topics()
 
-abstract_topics  <- function(wos, topic_count = 20) {
-    data(stop_words)
+abstract_topics  <- function(wos, topic_count = 20, extra_stopwords = '') {
+    my_stopwords  <- construct_stopword_list(extra_stopwords)
+    ab  <- wos %>% select(AB, UT) %>%
+        mutate(id = UT) %>%
+        na.omit() %>%
+        unnest_tokens(word, AB) %>%
+        anti_join(my_stopwords)
 
-    my_stopwords <- bind_rows(stop_words,
-                              data_frame(word = c('communication', 'social', 'media',
-                                                  'study', 'article', 'research',
-                                                  'analysis', 'explores', 'scholars',
-                                                  'paper'),
-                                         lexicon= 'custom'))
-
-   ab  <- wos %>% select(AB, ID) %>%
-        mutate(id = ID) %>%
-       unnest_tokens(word, AB) %>%
-       anti_join(my_stopwords)
-
-   word_count  <-  ab %>%
+    word_count  <-  ab %>%
        anti_join(my_stopwords) %>%
        count(id, word, sort=TRUE) %>%
        ungroup()
 
-   ab_dtm  <-  word_count %>%
+    cat('constructing document term matrix ...\n')
+    ab_dtm  <-  word_count %>%
        cast_dtm(id, word, n)
     
-   cat('constructing topics models ...')
+    cat('constructing topics models ...')
 
     ab_lda <- LDA(ab_dtm, k = topic_count, control = list(seed = 1234))
     tidy_lda  <- tidy(ab_lda)
@@ -84,13 +89,30 @@ abstract_topics_plot  <- function(tidy_lda){
 
 }
 
-abstract_tfidf  <- function(wos) {
 
-        ab_tf_idf <- ab  %>% 
-          count(id, word, sort = TRUE) %>%
-          ungroup() %>%
-          bind_tf_idf(word, id, n)
+#' Count term frequency/inverse document frequencies
+#' TODO: implement for any field; at the moment it works for abstracts
+#' @param wos: the dataframe of references
+#' @param field: field to construct tfidf matrix for
+#' @param extra_stopwords: any extra stopwords to exclude
+#' @keywords tfidf
+#' @export
+#' @import dplyr
+#' @import tidytext
+#' @examples
+#' field_tfidf()
 
-    ab_tf_idf
-    abstract_topics(wos)
+field_tfidf <- function(wos, field, extra_stopwords = '') {
+
+    my_stopwords  <- construct_stopword_list(extra_stopwords)
+
+    tf_idf <- wos %>% select(UT, AB)  %>% 
+        mutate(id = UT) %>%
+        na.omit() %>%
+        unnest_tokens(word, AB) %>%
+        anti_join(my_stopwords) %>%
+        count(id, word, sort = TRUE) %>%
+        ungroup() %>%
+        bind_tf_idf(word, id, n)
+    return(tf_idf)
 }

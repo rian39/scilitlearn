@@ -4,7 +4,7 @@
 \alias{keywords}
 \title{keywords from WoS DE field separated}
 \usage{
-keywords(wos)
+keywords(wos, with_id = FALSE)
 }
 \arguments{
 \item{wos:}{the dataframe of references}

@@ -1,5 +1,3 @@
-
-
 #' keywords from WoS DE field separated
 #'
 #' The function filters only for journal articles
@@ -10,13 +8,17 @@
 #' @examples
 #' keywords()
 
-keywords  <- function(wos) {
-    wos_keys  <- wos %>% select(TI,DT, PY,  DE) %>%
+keywords  <- function(wos, with_id = FALSE){
+    wos_keys  <- wos %>% select(PY, DT, DE, id=UT) %>%
         filter('Article' %in% DT) %>% 
-        separate(DE, into = paste('key', 1:10, sep='_'), sep=';', extra = 'drop', fill='right') %>%
-        gather(key=key, value= keywd, key_1:key_10) %>%
+        separate(DE, into = paste('key', 1:10, sep='_'),
+                 sep=';', extra = 'drop', fill='right') %>%
+        gather(key=key,  value= keywd, key_1:key_10) %>%
         transform(keywd = str_trim(str_to_lower(keywd))) %>%  
-        drop_na()
+        group_by(id) %>%
+        drop_na() %>%
+        select(id, keywd, PY)
+
     return(wos_keys)
 }
 
@@ -38,20 +40,21 @@ keyword_count  <- function(wos){
 
 #' Top keyword counts
 #'
+#' The keyword counts are grouped by publication year. When keywords are tied in their raking, they are all returned. 
 #' @param wos: the dataframe of references
-#' @param n: the number of keywords
+#' @param top_n: the number of keywords
 #' @keywords keyword
 #' @export
 #' @import dplyr
 #' @examples
 #' keyword_count_top()
 
-keyword_count_top  <- function(wos,n=5){
+keyword_count_top  <- function(wos,top_n=5){
     wos_key_count  <- keywords(wos) %>%
-        select(TI, PY, keywd) %>%
+        select(PY, keywd) %>%
         group_by(PY) %>% 
         count(keywd,  sort = TRUE)  %>%
-        top_n(5) %>%
+        top_n(top_n) %>%
         filter(n > 1) %>%
         arrange(PY)
     return(wos_key_count)
@@ -61,16 +64,17 @@ keyword_count_top  <- function(wos,n=5){
 #' Plot top keyword counts
 #'
 #' @param wos_key_count: the dataframe with keyword counts
+#' @param top_n: the number of keywords
 #' @keywords keyword
 #' @export
 #' @import ggplot2
 #' @examples
-#' plot_keyword_count_top()
+#' keyword_count_top_plot()
 
- plot_keyword_count_top  <- function(wos){
-    wos_key_count  <-  keyword_count(wos)
+ keyword_count_top_plot  <- function(wos, top_n = 5){
+    wos_key_count  <-  keyword_count_top(wos, top_n)
     ggplot(wos_key_count, aes(x=PY, y=n)) +
         geom_col() +
-        facet_wrap(~keywd)
+        facet_wrap(~ keywd)
  }
 

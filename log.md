@@ -19,3 +19,9 @@
 ## Sat 20 May 2017 09:30:38 BST
 - worked on topic models for abstracts. Need to work out a way to add stopwords specific to the area of analysis 
 - TODO: oxygenise abstracts
+
+## Sat 20 May 2017 14:27:32 BST
+- fixing up keyword counts so that I can use them alongside the abstracts. Need to be able to join on the ids 
+- also cleaning up the topic models again
+- all that was fine. But now installation is going very slow. I did add licence, and a couple of other things to DESCRIPTION, etc. Maybe I've broken something there. Or it could be to do with writing in a tunnel. 
+- it eventually installs and seems to be working ok

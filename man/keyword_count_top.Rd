@@ -4,15 +4,15 @@
 \alias{keyword_count_top}
 \title{Top keyword counts}
 \usage{
-keyword_count_top(wos, n = 5)
+keyword_count_top(wos, top_n = 5)
 }
 \arguments{
 \item{wos:}{the dataframe of references}
 
-\item{n:}{the number of keywords}
+\item{top_n:}{the number of keywords}
 }
 \description{
-Top keyword counts
+The keyword counts are grouped by publication year. When keywords are tied in their raking, they are all returned.
 }
 \examples{
 keyword_count_top()
