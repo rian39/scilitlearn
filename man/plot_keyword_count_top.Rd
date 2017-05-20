@@ -4,7 +4,7 @@
 \alias{plot_keyword_count_top}
 \title{Plot top keyword counts}
 \usage{
-plot_keyword_count_top(wos_key_count)
+plot_keyword_count_top(wos)
 }
 \arguments{
 \item{wos_key_count:}{the dataframe with keyword counts}

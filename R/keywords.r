@@ -67,7 +67,8 @@ keyword_count_top  <- function(wos,n=5){
 #' @examples
 #' plot_keyword_count_top()
 
- plot_keyword_count_top  <- function(wos_key_count){
+ plot_keyword_count_top  <- function(wos){
+    wos_key_count  <-  keyword_count(wos)
     ggplot(wos_key_count, aes(x=PY, y=n)) +
         geom_col() +
         facet_wrap(~keywd)

@@ -15,3 +15,7 @@
 
 ## Fri 19 May 2017 23:17:07 BST
 - breaking file into separate areas -- authors, titles, keywords, abstracts, etc and testing these
+
+## Sat 20 May 2017 09:30:38 BST
+- worked on topic models for abstracts. Need to work out a way to add stopwords specific to the area of analysis 
+- TODO: oxygenise abstracts

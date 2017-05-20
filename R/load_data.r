@@ -1,5 +1,3 @@
-library(bibliometrix)
-
 #' Load tsv file from Web of Science
 #'
 #' This function assumes that all the files have been joined, and all quote marks removed
@@ -11,7 +9,7 @@ library(bibliometrix)
  
 load_data  <- function(file) {
     wos = readr::read_delim(file, trim_ws = TRUE, quote='"', delim='\t', col_names = TRUE)
-    wos  <<-  unique(wos)
+    wos  <-  unique(wos)
     return(wos)
 }
 
