@@ -25,3 +25,7 @@
 - also cleaning up the topic models again
 - all that was fine. But now installation is going very slow. I did add licence, and a couple of other things to DESCRIPTION, etc. Maybe I've broken something there. Or it could be to do with writing in a tunnel. 
 - it eventually installs and seems to be working ok
+
+## Wed 24 May 2017 12:58:46 BST
+- adding simple search function for title/abstract/keywords; its in R/search.r 
+ 
