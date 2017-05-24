@@ -1,6 +1,6 @@
 
 ## Mon 15 May 2017 10:09:06 BST
-- TODO:building package, but library dependencies don't seem to work properly ... Fixed it -- need to reference imported packages using package:: syntax
+- DONE:building package, but library dependencies don't seem to work properly ... Fixed it -- need to reference imported packages using package:: syntax
 - found bibliometrix package on cran -- has many useful functions, but not in tidytext way
 
 ## Mon 15 May 2017 14:31:48 BST
@@ -11,7 +11,7 @@
 
 ## Wed 17 May 2017 23:03:01 BST
 - did more on the import stuff. @import pkg seems better than @importFrom pkg fn
-- still showing errors - need to sort this out
+- still showing errors - need to sort this out DONE
 
 ## Fri 19 May 2017 23:17:07 BST
 - breaking file into separate areas -- authors, titles, keywords, abstracts, etc and testing these
@@ -28,4 +28,6 @@
 
 ## Wed 24 May 2017 12:58:46 BST
 - adding simple search function for title/abstract/keywords; its in R/search.r 
- 
+
+## Wed 24 May 2017 22:48:12 BST
+- TODO: add functions to turn search results in [@author_year] citations;  
