@@ -1,6 +1,12 @@
+library(devtools)
+check()
+document()
+install()
+
 library(scilitlearn)
+library(dplyr)
 setwd('~/R/scilitlearn/')
-wos = load_data('sample.tsv')
+wos = load_data('inst/extdata/sample.tsv')
 year_count(wos)
 authors_top(wos)
 title_words(wos)
@@ -17,3 +23,9 @@ field_tfidf(wos)
 tfidf  = field_tfidf(wos)
 tfidf  %>% arrange(-tf_idf)
 abstract_topics(wos, 2,c('information', 'web', 'sl')) 
+search_title_abstract_keywords(wos, 'infrastructure', TRUE) 
+res = latex_format(wos[20:30,])
+res
+convert_to_bib('inst/extdata', 'test4.bib')
+system('wc -l test4.bib')
+

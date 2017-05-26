@@ -31,3 +31,13 @@
 
 ## Wed 24 May 2017 22:48:12 BST
 - TODO: add functions to turn search results in [@author_year] citations;  
+
+## Thu 25 May 2017 17:28:10 BST
+- extending search function a bit to make results more viewable ... 
+
+## Fri 26 May 2017 09:17:18 BST
+- writing function that returns latex reference  -- this is meant to feed into my writing workflow better ... 
+- put the build package stuff into test_package.r so that can run and install.
+- find a script from piwowar to convert isi csv to bibtex file; added that to exec/wos_to_bib.py, and moved data to inst/extdata/sample.tsv 
+- added that script
+- could probably do a lot with refmanageR package

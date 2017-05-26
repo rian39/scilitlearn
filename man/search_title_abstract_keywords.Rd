@@ -4,12 +4,14 @@
 \alias{search_title_abstract_keywords}
 \title{Search title, abstract and keywords for terms}
 \usage{
-search_title_abstract_keywords(wos, terms)
+search_title_abstract_keywords(wos, terms, view = FALSE)
 }
 \arguments{
 \item{wos:}{the dataframe of references}
 
 \item{term:}{the terms to search for a vector; this can be a regex}
+
+\item{view:}{show in Viewer}
 }
 \description{
 The search is run across all relevant fields
