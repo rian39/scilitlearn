@@ -1,7 +1,13 @@
-
-library(dplyr)
-library(janeaustenr)
-library(tidytext)
+#' Frequencies of all words in abstracts
+#'
+#' @param wos: the dataframe of references
+#' @param term: the terms to search for a vector; this can be a regex
+#' @keywords words
+#' @export
+#' @import dplyr
+#' @import tidytext
+#' @examples
+#' words_all()
 
 words_all  <- function(wos, field='AB'){
     data('stop_words')
@@ -19,32 +25,36 @@ words_all  <- function(wos, field='AB'){
     return(wos_words)
 }
 
-View(words_all(wos))
+#' Ranked frequencies of all words in abstracts
+#'
+#' @param wos: the dataframe of references
+#' @param plot: whether to plot the ranked frequencies 
+#' @keywords words
+#' @export
+#' @import dplyr
+#' @import tidytext
+#' @import ggplot2
+#' @examples
+#' words_all_ranked_frequencies()
 
-freq_by_rank <- wos_words %>% 
-  group_by(TI) %>% 
-  mutate(rank = row_number(), 
+words_all_ranked_frequencies  <- function(wos, plot = FALSE) {
+
+    freq_by_rank <- words_all(wos) %>% 
+      group_by(TI) %>% 
+      mutate(rank = row_number(), 
          `term frequency` = n/total)
 
-library(ggplot2)
-freq_by_rank
-freq_by_rank %>% 
-  ggplot(aes(rank, `term frequency`, color=TI)) + 
-  geom_line(size = 0.5, alpha = 0.5) + 
-  scale_x_log10() +
-  scale_y_log10() + 
-  theme(legend.position="none")
+    if (plot == TRUE) {
+        library(ggplot2)
+        freq_by_rank
+        freq_by_rank %>% 
+          ggplot(aes(rank, `term frequency`, color=TI)) + 
+          geom_line(size = 0.5, alpha = 0.5) + 
+          scale_x_log10() +
+          scale_y_log10() + 
+          theme(legend.position="none")
+    }
 
+    return(freq_by_rank)
+}
 
-rank_subset <- freq_by_rank %>% 
-  filter(rank < 50,
-         rank > 5)
-
-lm(log10(`term frequency`) ~ log10(rank), data = rank_subset)
-freq_by_rank %>% 
-  ggplot(aes(rank, `term frequency`, color = TI)) + 
-  geom_abline(intercept = -1.46, slope = -1.1, color = "gray50", linetype = 2) +
-  geom_line(size = 0.5, alpha = 0.5) + 
-  scale_x_log10() +
-  scale_y_log10() +
-  theme(legend.position="none")

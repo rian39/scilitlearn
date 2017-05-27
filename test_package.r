@@ -26,6 +26,8 @@ abstract_topics(wos, 2,c('information', 'web', 'sl'))
 search_title_abstract_keywords(wos, 'infrastructure', TRUE) 
 res = latex_format(wos[20:30,])
 res
-convert_to_bib('inst/extdata', 'test4.bib')
-system('wc -l test4.bib')
+convert_to_bib('inst/extdata', 'test5.bib')
+system('wc -l test5.bib')
+wos_words = words_all_ranked_frequencies(wos, TRUE)
+View(wos_words)
 
