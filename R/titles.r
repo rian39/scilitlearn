@@ -4,7 +4,6 @@
 #' @param wos: the dataframe of references
 #' @keywords authors
 #' @export
-#' @importFrom dplyr anti_join 
 #' @importFrom tidytext unnest_tokens
 #' @import stringr
 #' @import dplyr
@@ -13,7 +12,7 @@
 #' title_words()
  
 title_words  <- function(wos) { 
-    data('tidytext::stop_words')
+    data('stop_words')
     title_words  <- wos %>% select(TI, AU, PY) %>%
         unnest_tokens(word, TI) %>%
         mutate(word = str_extract(word, "[a-zA-Z']+")) %>% 
