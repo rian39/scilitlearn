@@ -2,7 +2,7 @@
 % Please edit documentation in R/citations.r
 \name{cited_reference_count}
 \alias{cited_reference_count}
-\title{Counted cited references
+\title{Count cited references
 Returns the n top cited references grouped by year}
 \usage{
 cited_reference_count(wos, n = 20)
@@ -13,7 +13,7 @@ cited_reference_count(wos, n = 20)
 \item{n:}{the number to return}
 }
 \description{
-Counted cited references
+Count cited references
 Returns the n top cited references grouped by year
 }
 \examples{

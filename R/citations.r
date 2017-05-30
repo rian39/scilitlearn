@@ -1,10 +1,11 @@
-
-#' Aggregate cited references 
-#'
+#' List cited references in narrow form 
+#' The key for this data frame is title and publication year 
 #' @param wos: the dataframe of references
 #' @keywords citations
 #' @export
 #' @import dplyr
+#' @import stringr
+#' @import tidyr
 #' @examples
 #' cited_references_gather()
 
@@ -17,7 +18,7 @@ cited_references_gather  <- function(wos) {
     return(wos_refs)
 }
 
-#' Counted cited references
+#' Count cited references
 #' Returns the n top cited references grouped by year
 #' @param wos: the dataframe of references
 #' @param n: the number to return

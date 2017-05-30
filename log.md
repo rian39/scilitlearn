@@ -41,3 +41,6 @@
 - find a script from piwowar to convert isi csv to bibtex file; added that to exec/wos_to_bib.py, and moved data to inst/extdata/sample.tsv 
 - added that script
 - could probably do a lot with refmanageR package
+
+## Mon 29 May 2017 22:23:14 BST
+- fixing the tdidf functions that I added on monday

@@ -1,5 +1,15 @@
-construct_stopword_list  <- function(extra_stopwords) {
-    data(tidytext::stop_words)
+#' Add tot he stopword list 
+#' @param wos: the dataframe of references
+#' @param extra_stopwords: any extra stopwords to exclude
+#' @keywords stopwords
+#' @export#j
+
+#' @import dplyr
+#' @import tidytext
+#' @examples
+#' construct_stopword_list()
+
+construct_stopword_list  <- function(extra_stopwords) { data(tidytext::stop_words)
 
     my_stopwords <- bind_rows(stop_words,
                               data_frame(word = c('communication', 'social', 'media',
@@ -90,29 +100,4 @@ abstract_topics_plot  <- function(tidy_lda){
 }
 
 
-#' Count term frequency/inverse document frequencies
-#' TODO: implement for any field; at the moment it works for abstracts
-#' @param wos: the dataframe of references
-#' @param field: field to construct tfidf matrix for
-#' @param extra_stopwords: any extra stopwords to exclude
-#' @keywords tfidf
-#' @export
-#' @import dplyr
-#' @import tidytext
-#' @examples
-#' field_tfidf()
 
-field_tfidf <- function(wos, field, extra_stopwords = '') {
-
-    my_stopwords  <- construct_stopword_list(extra_stopwords)
-
-    tf_idf <- wos %>% select(UT, AB)  %>% 
-        mutate(id = UT) %>%
-        na.omit() %>%
-        unnest_tokens(word, AB) %>%
-        anti_join(my_stopwords) %>%
-        count(id, word, sort = TRUE) %>%
-        ungroup() %>%
-        bind_tf_idf(word, id, n)
-    return(tf_idf)
-}

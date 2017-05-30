@@ -2,7 +2,8 @@
 % Please edit documentation in R/citations.r
 \name{cited_references_gather}
 \alias{cited_references_gather}
-\title{Aggregate cited references}
+\title{List cited references in narrow form 
+The key for this data frame is title and publication year}
 \usage{
 cited_references_gather(wos)
 }
@@ -10,7 +11,8 @@ cited_references_gather(wos)
 \item{wos:}{the dataframe of references}
 }
 \description{
-Aggregate cited references
+List cited references in narrow form 
+The key for this data frame is title and publication year
 }
 \examples{
 cited_references_gather()

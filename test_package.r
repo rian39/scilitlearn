@@ -1,10 +1,15 @@
+
 library(devtools)
 check()
 document()
 install()
 
-library(scilitlearn)
 library(dplyr)
+library(stringr)
+library(tidyr)
+library(tidytext)
+
+library(scilitlearn)
 setwd('~/R/scilitlearn/')
 wos = load_data('inst/extdata/sample.tsv')
 year_count(wos)
@@ -18,6 +23,7 @@ kw = keywords(wos, TRUE)
 keyword_count(wos)  
 keyword_count_top(wos, 2)
 cr = cited_references_gather(wos)  
+head(cr)
 cited_reference_count(wos)  
 field_tfidf(wos)
 tfidf  = field_tfidf(wos)
@@ -28,6 +34,9 @@ res = latex_format(wos[20:30,])
 res
 convert_to_bib('inst/extdata', 'test5.bib')
 system('wc -l test5.bib')
-wos_words = words_all_ranked_frequencies(wos, TRUE)
-View(wos_words)
+wos_words = words_all_ranked_frequencies(wos, 'AB', TRUE)
+head(wos_words)
+tfidf_plot(tfidf(wos_words), 30) 
+
+
 
