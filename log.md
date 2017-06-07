@@ -44,3 +44,7 @@
 
 ## Mon 29 May 2017 22:23:14 BST
 - fixing the tdidf functions that I added on monday
+
+## Wed 07 Jun 2017 13:01:54 BST
+- not sure what needs to be done next -- could integrate database stuff; not sure if I have any use for the network stuff? 
+- wasted quite a lot of time trying to turn field names into variables. Works fine for select, but couldn't get it happening for unnest_tokens in tidytext ... 

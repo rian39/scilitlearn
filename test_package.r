@@ -37,6 +37,8 @@ system('wc -l test5.bib')
 wos_words = words_all_ranked_frequencies(wos, 'AB', TRUE)
 head(wos_words)
 tfidf_plot(tfidf(wos_words), 30) 
+wos_words = words_all_ranked_frequencies(wos, 'TI', TRUE)
+tfidf_plot(tfidf(wos_words), 30) 
 
 
 

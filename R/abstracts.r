@@ -2,7 +2,7 @@
 #' @param wos: the dataframe of references
 #' @param extra_stopwords: any extra stopwords to exclude
 #' @keywords stopwords
-#' @export#j
+#' @export
 
 #' @import dplyr
 #' @import tidytext

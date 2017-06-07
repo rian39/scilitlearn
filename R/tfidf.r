@@ -11,11 +11,12 @@
 
 words_all  <- function(wos, field='AB'){
     data('stop_words')
-    wos_words <- wos %>% select(get(field), TI)  %>%
-      unnest_tokens(word, AB) %>%
+
+    wos_words <- wos %>% select( TI, AB) %>%
+        unnest_tokens( word, AB ) %>%
         anti_join(stop_words) %>%
-      count(TI, word, sort = TRUE) %>%
-      ungroup()
+        count(TI, word, sort = TRUE) %>%
+        ungroup()
 
     total_words <- wos_words %>% 
       group_by(TI) %>% 
@@ -112,8 +113,6 @@ tfidf_plot  <- function(wos_words, terms = 20) {
 #' @examples
 #' field_tfidf()
 
-extra_stopwords = ''
-field ='AB'
 
 field_tfidf <- function(wos, field = 'AB',  extra_stopwords = '') {
 
