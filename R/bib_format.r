@@ -32,6 +32,8 @@ latex_format  <- function(wos) {
 #' convert_to_bib()
 
 convert_to_bib  <-  function(wos_dir = '.',  out_file = 'out.bib') {
-    system(paste('exec/wos_to_bib.py', wos_dir, out_file))
+      path <- paste(system.file(package="scilitlearn"), "wos_to_bib.py", sep="/")
+    command = paste('python', path, wos_dir, out_file)
+    system(command)
 
 }

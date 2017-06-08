@@ -48,3 +48,6 @@
 ## Wed 07 Jun 2017 13:01:54 BST
 - not sure what needs to be done next -- could integrate database stuff; not sure if I have any use for the network stuff? 
 - wasted quite a lot of time trying to turn field names into variables. Works fine for select, but couldn't get it happening for unnest_tokens in tidytext ... 
+
+## Thu 08 Jun 2017 08:01:07 BST
+- fixing the convert to bib function;  
