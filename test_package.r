@@ -1,4 +1,3 @@
-
 library(devtools)
 check()
 document()
@@ -29,11 +28,17 @@ field_tfidf(wos)
 tfidf  = field_tfidf(wos)
 tfidf  %>% arrange(-tf_idf)
 abstract_topics(wos, 2,c('information', 'web', 'sl')) 
-search_title_abstract_keywords(wos, 'infrastructure', TRUE) 
-res = latex_format(wos[20:30,])
+res = search_title_abstract_keywords(wos, 'infrastructure', TRUE) 
+latex_format(res)
 res
-convert_to_bib('inst/extdata', 'test5.bib')
+
+convert_file_to_bib('inst/extdata', 'test5.bib')
 system('wc -l test5.bib')
+system('rm test5.bib')
+convert_refs_to_bib(wos, 'test6.bib')
+system('wc -l test6.bib')
+system('rm test6.bib')
+
 wos_words = words_all_ranked_frequencies(wos, 'AB', TRUE)
 head(wos_words)
 tfidf_plot(tfidf(wos_words), 30) 

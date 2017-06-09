@@ -22,7 +22,7 @@
 
 ## Sat 20 May 2017 14:27:32 BST
 - fixing up keyword counts so that I can use them alongside the abstracts. Need to be able to join on the ids 
-- also cleaning up the topic models again
+f also cleaning up the topic models again
 - all that was fine. But now installation is going very slow. I did add licence, and a couple of other things to DESCRIPTION, etc. Maybe I've broken something there. Or it could be to do with writing in a tunnel. 
 - it eventually installs and seems to be working ok
 
@@ -51,3 +51,7 @@
 
 ## Thu 08 Jun 2017 08:01:07 BST
 - fixing the convert to bib function;  
+
+## Fri 09 Jun 2017 08:22:48 BST
+- need to be able to save selected refs as bib; 
+- added function to do this to bib_format, and also changed search to return the whole WoS record

@@ -29,11 +29,27 @@ latex_format  <- function(wos) {
 #' @export
 #' @param wos_dir:  the directory of references
 #' @param out_file:  the bib file produced
-#' convert_to_bib()
+#' convert_file_to_bib()
 
-convert_to_bib  <-  function(wos_dir = '.',  out_file = 'out.bib') {
+convert_file_to_bib  <-  function(wos_dir = '.',  out_file = 'out.bib') {
       path <- paste(system.file(package="scilitlearn"), "wos_to_bib.py", sep="/")
     command = paste('python', path, wos_dir, out_file)
     system(command)
 
+}
+
+#' Convert all WoS records to biblatex and save as file
+#' @keywords bibtex
+#' @export
+#' @param wos:  the references
+#' @param out_file:  the bib file produced
+#' convert_refs_to_bib()
+
+convert_refs_to_bib  <-  function(wos,  out_file = 'out.bib') {
+    wos_dir ='.'
+    write.table(wos, file='wos.tsv', sep = '\t', row.names = FALSE)
+    path <- paste(system.file(package="scilitlearn"), "wos_to_bib.py", sep="/")
+    command = paste('python', path, wos_dir, out_file)
+    system(command)
+    system('rm wos.tsv')
 }

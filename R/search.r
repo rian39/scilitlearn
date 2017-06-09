@@ -22,7 +22,7 @@
 search_title_abstract_keywords  <- function(wos, terms, view = FALSE) {
 
     terms = paste(terms,  collapse='|')
-    res  <- wos %>% select(TI, AB, DE) %>%
+    res  <-  wos %>%
         filter(grepl(TI, pattern =  terms, ignore.case = TRUE),
                grepl(AB, pattern =  terms, ignore.case = TRUE),
                grepl(DE, pattern =  terms, ignore.case = TRUE)) 
