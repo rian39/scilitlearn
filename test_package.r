@@ -11,6 +11,7 @@ library(tidytext)
 library(tidyverse)
 library(broom)
 library(lubridate)
+library(splines)
 
 library(scilitlearn)
 setwd('~/R/scilitlearn/')
