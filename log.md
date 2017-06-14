@@ -62,3 +62,4 @@ f also cleaning up the topic models again
 
 ## Wed 14 Jun 2017 09:55:03 BST
 - added in code for exploring word change over time for main text fields in Wos R/words_over_time.r 
+- also added code to do peaked terms -- using splines, etc -- to decide what is happening. 
