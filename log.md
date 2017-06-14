@@ -55,3 +55,10 @@ f also cleaning up the topic models again
 ## Fri 09 Jun 2017 08:22:48 BST
 - need to be able to save selected refs as bib; 
 - added function to do this to bib_format, and also changed search to return the whole WoS record
+
+## Sat 10 Jun 2017 11:38:40 BST
+- would be good to get the trends in words easily visible http://varianceexplained.org/r/hn-trends/ for titles, keywords, or abstracts.
+- the simplest case would be keywords  -- set up column with PY and PM, and count DE by month
+
+## Wed 14 Jun 2017 09:55:03 BST
+- added in code for exploring word change over time for main text fields in Wos R/words_over_time.r 

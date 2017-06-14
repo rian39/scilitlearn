@@ -12,6 +12,11 @@ load_data  <- function(file) {
     wos  <-  unique(wos)
     cat('loaded ', nrow(wos), ' references\n')
     print(wos %>% select(DT) %>% count(DT, sort = TRUE))
+    # add column for date
+
+    wos  <- wos %>% 
+        mutate(date = as.Date(paste(1, tolower(PD), PY, sep=' '),
+                              format = '%d %b %Y'))
     return(wos)
 }
 

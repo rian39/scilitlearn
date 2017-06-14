@@ -78,3 +78,4 @@ keyword_count_top  <- function(wos,top_n=5){
         facet_wrap(~ keywd)
  }
 
+

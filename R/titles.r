@@ -9,9 +9,9 @@
 #' @import dplyr
 #' @import tidyr
 #' @examples
-#' title_words()
+#' title_word_count()
  
-title_words  <- function(wos) { 
+title_word_count  <- function(wos) { 
     data('stop_words')
     title_words  <- wos %>% select(TI, AU, PY) %>%
         unnest_tokens(word, TI) %>%
