@@ -49,5 +49,5 @@ tfidf_plot(tfidf(wos_words), 30)
 wos_words = words_all_ranked_frequencies(wos, 'TI', TRUE)
 tfidf_plot(tfidf(wos_words), 30) 
 
-words_over_time(wos,field='TI',  to_plot= 30)
+words_over_time(wos,combine=FALSE, field='DE',  to_plot= 30)
 
