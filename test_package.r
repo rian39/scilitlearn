@@ -33,8 +33,10 @@ field_tfidf(wos)
 tfidf  = field_tfidf(wos)
 tfidf  %>% arrange(-tf_idf)
 abstract_topics(wos, 2,c('information', 'web', 'sl')) 
-res = search_title_abstract_keywords(wos, 'infrastructure', TRUE) 
+res = search_term(wos, 'platform', TRUE, format_as_bibtex = FALSE) 
+search_term(wos, 'platform', view = FALSE,  format_as_bibtex = TRUE) 
 latex_format(res)
+latex_format(res, single_ref = TRUE)
 res
 
 convert_file_to_bib('inst/extdata', 'test5.bib')

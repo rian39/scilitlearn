@@ -63,3 +63,6 @@ f also cleaning up the topic models again
 ## Wed 14 Jun 2017 09:55:03 BST
 - added in code for exploring word change over time for main text fields in Wos R/words_over_time.r 
 - also added code to do peaked terms -- using splines, etc -- to decide what is happening. 
+
+## Fri 16 Jun 2017 10:42:14 BST
+- changing latex_format so that it returns a single string with all found references. This can be used directly in rmd files.  Also changed the search function so that it does this too;  

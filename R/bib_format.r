@@ -5,6 +5,7 @@
 #' TODO: function that deals with van/von/de and other double barrel names 
 #' TODO: multiple references for the same year. 
 #' @param wos: the dataframe of references
+#' @param single_ref: return as a single bibtex reference .e.g [@A_2012; B_2013]
 #' @export
 #' @import dplyr
 #' @import stringr
@@ -18,10 +19,16 @@
 #View(wos)
 #library(stringr)
 
-latex_format  <- function(wos) {
-    wos  <- wos %>% mutate(ref = str_extract(gsub(x=AF,"'", '') , pattern='\\w+')) %>%
-        mutate(ref = paste('[@', ref, '_', PY, ']', sep=''))
-    return(wos$ref)
+latex_format  <- function(wos, single_ref = FALSE) {
+    wos  <- wos %>% mutate(ref = str_extract(gsub(x=AF,"'", '') , pattern='\\w+'))
+    if (single_ref) {
+            wos  <-  wos %>% mutate(ref = paste('[', paste('@', ref, '_', PY,
+                                               collapse = '; ', sep=''), ']', sep=''))
+        return(wos$ref[1])
+    } else {
+            wos  <-  wos %>% mutate(ref = paste('[@', ref, '_', PY, ']', sep='' ))
+        return(wos$ref)
+    }
 }
 
 #' Convert all WoS isi csv in directory to bibtex a file

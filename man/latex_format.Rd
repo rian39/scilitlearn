@@ -4,10 +4,12 @@
 \alias{latex_format}
 \title{Return any set of WoS references as latex reference}
 \usage{
-latex_format(wos)
+latex_format(wos, single_ref = FALSE)
 }
 \arguments{
 \item{wos:}{the dataframe of references}
+
+\item{single_ref:}{return as a single bibtex reference .e.g [@A_2012; B_2013]}
 }
 \description{
 e.g. [@Derrida_2001a].
