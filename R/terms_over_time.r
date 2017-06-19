@@ -4,6 +4,7 @@
 #' @param wos: the dataframe of references
 #' @param field: individual field to use
 #' @param combine: combine all relevant fields
+#' @param plt: whether to plot of not
 #' @param terms_to_plot: the top or lowest n terms
 #' @keywords time
 #' @export
@@ -16,9 +17,9 @@
 #' @import stringr
 #' @import tidytext
 #' @examples
-#' words_over_time()
+#' terms_over_time()
 
-words_over_time  <-  function(wos, field = 'TI', combine = TRUE, terms_to_plot = 16) {
+terms_over_time  <-  function(wos, field = 'TI', combine = TRUE, plt = TRUE, terms_to_plot = 16) {
 
     #field='TI'
     # join all relevant fields into TI
@@ -79,15 +80,18 @@ words_over_time  <-  function(wos, field = 'TI', combine = TRUE, terms_to_plot =
       unnest(map(model, tidy)) %>%
       filter(term == "year") %>%
       arrange(desc(estimate))
-    slopes
 
-    words_to_plot  <- slopes %>% top_n(to_plot, wt = estimate) %>% select(word)
+    words_to_plot  <- slopes %>% top_n(terms_to_plot, wt = estimate) %>% select(word)
     plot_data  <- word_month_counts %>% filter(word %in% words_to_plot$word)
-    ggplot(plot_data, aes(x=date, y=percent)) +
-      geom_line(aes(color = word), show.legend = FALSE) +
-      expand_limits(y = 0) +
-      facet_wrap(~ word, scales = "free_y")
-    
+
+    if (plt) {
+        g  <- ggplot(plot_data, aes(x=date, y=percent)) +
+          geom_line(aes(color = word), show.legend = FALSE) +
+          expand_limits(y = 0) +
+          facet_wrap(~ word, scales = "free_y")
+      return(g)
+    } 
+
   return(word_month_counts)
 }
 
@@ -109,12 +113,12 @@ words_over_time  <-  function(wos, field = 'TI', combine = TRUE, terms_to_plot =
 #' @import stringr
 #' @import tidytext
 #' @examples
-#' peak_terms_monthly()
+#' peaked_terms_monthly()
 
-peak_terms_monthly  <-  function(wos, field = 'TI', combine = FALSE, terms_to_plot = 16) {
+peaked_terms_monthly  <-  function(wos, field = 'TI', combine = FALSE, terms_to_plot = 16) {
         library(splines)
 
-    word_month_counts  <-  words_over_time(wos, field, FALSE, terms_to_plot) 
+    word_month_counts  <-  terms_over_time(wos, field, combine, plt = FALSE,  terms_to_plot) 
     mod2 <- ~ glm(cbind(n, month_total - n) ~ ns(year, 4), ., family = "binomial")
 
     # Fit a cubic spline to each shape
