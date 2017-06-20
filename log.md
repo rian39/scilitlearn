@@ -66,3 +66,6 @@ f also cleaning up the topic models again
 
 ## Fri 16 Jun 2017 10:42:14 BST
 - changing latex_format so that it returns a single string with all found references. This can be used directly in rmd files.  Also changed the search function so that it does this too;  
+
+## Tue 20 Jun 2017 22:33:35 BST
+- added a function to do cited references over time, but not integrated into the package yet R/cited_reference_time.r 
