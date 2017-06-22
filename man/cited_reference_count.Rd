@@ -3,18 +3,20 @@
 \name{cited_reference_count}
 \alias{cited_reference_count}
 \title{Count cited references
-Returns the n top cited references grouped by year}
+Returns the n top cited references}
 \usage{
-cited_reference_count(wos, n = 20)
+cited_reference_count(wos, n = 20, year_grouped = FALSE)
 }
 \arguments{
+\item{year_grouped}{whether to group by year}
+
 \item{wos:}{the dataframe of references}
 
 \item{n:}{the number to return}
 }
 \description{
 Count cited references
-Returns the n top cited references grouped by year
+Returns the n top cited references
 }
 \examples{
 cited_reference_count()

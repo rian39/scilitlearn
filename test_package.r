@@ -13,10 +13,11 @@ library(broom)
 library(lubridate)
 library(splines)
 library(ggplot2)
-
 library(scilitlearn)
+
 setwd('~/R/scilitlearn/')
 wos = load_data('inst/extdata/sample.tsv')
+
 year_count(wos)
 authors_top(wos)
 title_word_count(wos)
@@ -38,7 +39,6 @@ res = search_term(wos, 'platform', TRUE, format_as_bibtex = FALSE)
 search_term(wos, 'platform', view = FALSE,  format_as_bibtex = TRUE) 
 latex_format(res)
 latex_format(res, single_ref = TRUE)
-res
 
 convert_file_to_bib('inst/extdata', 'test5.bib')
 system('wc -l test5.bib')
@@ -54,5 +54,6 @@ wos_words = words_all_ranked_frequencies(wos, 'TI', TRUE)
 tfidf_plot(tfidf(wos_words), 30) 
 wm = terms_over_time(wos,combine=FALSE, field='DE', plt=TRUE,   terms_to_plot= 30)
 wm
-peak_terms_monthly(wos,combine=FALSE, field='DE',  terms_to_plot= 30)
+peaked_terms_monthly(wos,combine=FALSE, field='DE',  terms_to_plot= 30)
 
+cited_references_time(wos)

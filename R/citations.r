@@ -19,22 +19,30 @@ cited_references_gather  <- function(wos) {
 }
 
 #' Count cited references
-#' Returns the n top cited references grouped by year
+#' Returns the n top cited references 
 #' @param wos: the dataframe of references
 #' @param n: the number to return
+#' @param year_grouped whether to group by year
 #' @keywords citations
 #' @export
 #' @import dplyr
 #' @examples
 #' cited_reference_count()
 
-cited_reference_count  <-  function(wos, n = 20) {
-    wos_refs_count  <- cited_references_gather(wos) %>% select(PY, ref) %>%
-        group_by(PY) %>%
-        count(ref, sort=TRUE) %>%
-        top_n(n) %>%
-        filter(n > 5) %>%
-        arrange(PY)
+cited_reference_count  <-  function(wos, n = 20, year_grouped = FALSE) {
+    if (year_grouped) {
+        wos_refs_count  <- cited_references_gather(wos) %>% select(PY, ref) %>%
+            group_by(PY) %>%
+            count(ref, sort=TRUE) %>%
+            top_n(n) %>%
+            arrange(PY)
+    } else {
+        wos_refs_count  <- cited_references_gather(wos) %>% select(PY, ref) %>%
+            group_by(PY) %>%
+            count(ref, sort=TRUE) %>%
+            arrange(PY) %>%
+            ungroup()
+    }
     return(wos_refs_count)
 }
 

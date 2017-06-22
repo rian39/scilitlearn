@@ -69,3 +69,6 @@ f also cleaning up the topic models again
 
 ## Tue 20 Jun 2017 22:33:35 BST
 - added a function to do cited references over time, but not integrated into the package yet R/cited_reference_time.r 
+
+## Thu 22 Jun 2017 07:35:14 BST
+- fixing the cited references - add to package and get plot working 
