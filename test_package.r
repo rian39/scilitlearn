@@ -2,7 +2,7 @@ library(devtools)
 check()
 document()
 build()
-install()
+install(upgrade_dependencies = FALSE)
 
 library(dplyr)
 library(stringr)
@@ -55,5 +55,8 @@ tfidf_plot(tfidf(wos_words), 30)
 wm = terms_over_time(wos,combine=FALSE, field='DE', plt=TRUE,   terms_to_plot= 30)
 wm
 peaked_terms_monthly(wos,combine=FALSE, field='DE',  terms_to_plot= 30)
-
 cited_references_time(wos)
+term_graph(wos, 5, 'TI') 
+term_graph(wos, 50, 'AB') 
+term_graph(wos, 9, 'DE') 
+

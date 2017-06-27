@@ -72,3 +72,6 @@ f also cleaning up the topic models again
 
 ## Thu 22 Jun 2017 07:35:14 BST
 - fixing the cited references - add to package and get plot working 
+
+## Sat 24 Jun 2017 12:33:45 BST
+- adding in the graphing function for pairs of terms in DE, AB or TI 
