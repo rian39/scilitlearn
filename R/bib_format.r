@@ -20,7 +20,10 @@
 #library(stringr)
 
 latex_format  <- function(wos, single_ref = FALSE) {
-    wos  <- wos %>% mutate(ref = str_extract(gsub(x=AF,"'", '') , pattern='\\w+'))
+    wos  <-  wos %>% mutate(ref = str_replace(string = str_extract(gsub(AF, pattern= ' ', replacement= ''),
+                                     pattern =  '^(.+?),'), pattern=',', replacement=''))
+    #wos$ref
+    #wos  <- wos %>% mutate(ref = str_extract(gsub(x=AF,"'", '') , pattern='\\w+'))
     if (single_ref) {
             wos  <-  wos %>% mutate(ref = paste('[', paste('@', ref, '_', PY,
                                                collapse = '; ', sep=''), ']', sep=''))

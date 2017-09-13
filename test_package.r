@@ -13,11 +13,19 @@ library(broom)
 library(lubridate)
 library(splines)
 library(ggplot2)
-library(scilitlearn)
 
+library(scilitlearn)
 setwd('~/R/scilitlearn/')
 wos = load_data('inst/extdata/sample.tsv')
 
+## loading many files 
+
+dir = 'tmp' 
+setwd('scilitlearn')
+dir()
+zipfile  = 'inst/extdata/governmentality_june17.zip'
+wos  <- load_zip(zipfile)
+dim(wos)
 year_count(wos)
 authors_top(wos)
 title_word_count(wos)
@@ -35,7 +43,7 @@ field_tfidf(wos)
 tfidf  = field_tfidf(wos)
 tfidf  %>% arrange(-tf_idf)
 abstract_topics(wos, 2,c('information', 'web', 'sl')) 
-res = search_term(wos, 'platform', TRUE, format_as_bibtex = FALSE) 
+res = search_term(wos, 'facebook', TRUE, format_as_bibtex = FALSE) 
 search_term(wos, 'platform', view = FALSE,  format_as_bibtex = TRUE) 
 latex_format(res)
 latex_format(res, single_ref = TRUE)
@@ -43,7 +51,7 @@ latex_format(res, single_ref = TRUE)
 convert_file_to_bib('inst/extdata', 'test5.bib')
 system('wc -l test5.bib')
 system('rm test5.bib')
-convert_refs_to_bib(wos, 'test6.bib')
+convert_refs_to_bib(res, 'test6.bib')
 system('wc -l test6.bib')
 system('rm test6.bib')
 

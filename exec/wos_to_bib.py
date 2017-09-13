@@ -54,7 +54,9 @@ def export_as_bibtex(bib_list, fh, filename):
     counter = 0
     for bib_dict in bib_list:
         counter += 1
-        bib_id = filename + "-" + str(counter)
+        # bib_id = filename + "-" + str(counter)
+        bib_id = bib_dict['author'] + "-" + bib_dict['year']
+        print bib_id
         fh.write("@article{" + str(bib_id) + ",")
         lines = [heading + " = {" + str(bib_dict[heading]) + "}" for heading in bib_dict]
         fh.write(",\r\n".join(lines))

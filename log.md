@@ -43,7 +43,7 @@ f also cleaning up the topic models again
 - could probably do a lot with refmanageR package
 
 ## Mon 29 May 2017 22:23:14 BST
-- fixing the tdidf functions that I added on monday
+- fixing the tfidf functions that I added on monday
 
 ## Wed 07 Jun 2017 13:01:54 BST
 - not sure what needs to be done next -- could integrate database stuff; not sure if I have any use for the network stuff? 
@@ -75,3 +75,11 @@ f also cleaning up the topic models again
 
 ## Sat 24 Jun 2017 12:33:45 BST
 - adding in the graphing function for pairs of terms in DE, AB or TI 
+
+## Sun 13 Aug 2017 15:55:58 AEST
+- haven't done anything on this for a while, and have forgotten a bit how to do anything. Playing with various bits of it to see what I've done in the past.  
+
+## Wed 13 Sep 2017 18:10:58 CEST
+- starting to do work on directories and zipped files 
+- added the functions to R/load_data.r -- not sure they are very good. they work on the test data ... 
+- TODO: check how it deals with the quotes, etc. - might need to add the sed -g 's/"/', etc. 

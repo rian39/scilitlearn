@@ -35,3 +35,39 @@ year_count  <- function(wos) {
     yrs  <- wos %>% select(PY) %>% count(PY, sort=TRUE) %>% arrange(PY)
     return(yrs)
 }
+
+
+#' Load directory of WoS records
+#'
+#' This function assumes that all the files have been zipped and all quote marks removed
+#' @param dir: the directory of files
+#' @keywords directory, WoS files 
+#' @export
+#' @examples
+#' load_zip()
+
+load_directory <- function(dir) {
+    setwd(dir)   
+    filenames  <- dir()
+    d  <- lapply(filenames, load_data)
+    df  <- do.call(rbind, d)
+    setwd('..')
+    return(df)
+}
+
+#' Load zipfile of WoS records
+#'
+#' This function assumes that all the files have been zipped and all quote marks removed
+#' @param zipfile: the collection of files
+#' @keywords zip 
+#' @export
+#' @examples
+#' load_zip()
+
+load_zip  <-  function(zipfile) {
+    unzip(zipfile, exdir = 'tmp') 
+    df  <- load_directory('tmp')
+    #file.remove(dir())     
+    return(df)
+}
+

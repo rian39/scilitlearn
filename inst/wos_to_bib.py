@@ -5,6 +5,7 @@
 
 import csv
 import glob
+import re
 from collections import defaultdict
 import codecs
 import sys
@@ -52,9 +53,12 @@ def parse_wos_txt(filename):
 
 def export_as_bibtex(bib_list, fh, filename):
     counter = 0
+    print 'here'
     for bib_dict in bib_list:
         counter += 1
-        bib_id = filename + "-" + str(counter)
+        author_key  = re.sub(string= bib_dict['author'], pattern=', \\w+', repl='')
+        print author_key
+        bib_id = author_key + "_" + bib_dict['year']
         fh.write("@article{" + str(bib_id) + ",")
         lines = [heading + " = {" + str(bib_dict[heading]) + "}" for heading in bib_dict]
         fh.write(",\r\n".join(lines))
