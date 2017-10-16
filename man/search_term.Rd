@@ -9,7 +9,7 @@ search_term(wos, terms, view = FALSE, format_as_bibtex = FALSE)
 \arguments{
 \item{wos:}{the dataframe of references}
 
-\item{term:}{the terms to search for a vector; this can be a regex}
+\item{term:}{the terms to search for as a vector; this can be a regex}
 
 \item{view:}{show in Viewer}
 

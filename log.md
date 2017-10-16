@@ -83,3 +83,7 @@ f also cleaning up the topic models again
 - starting to do work on directories and zipped files 
 - added the functions to R/load_data.r -- not sure they are very good. they work on the test data ... 
 - TODO: check how it deals with the quotes, etc. - might need to add the sed -g 's/"/', etc. 
+
+## Mon 16 Oct 2017 11:15:10 BST
+ - fixing problem with search_terms -- it was using & instead of | 
+ - rebuilt package

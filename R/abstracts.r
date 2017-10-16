@@ -16,7 +16,7 @@ construct_stopword_list  <- function(extra_stopwords) { data(tidytext::stop_word
                                                   'study', 'article', 'research',
                                                   'analysis', 'explores', 'scholars',
                                                   'paper', 'investigates',
-                                                  'analyzes', 'examines', 
+                                                  'analyzes', 'examines', 'argue', 'argues', 
                                                   'analyses', extra_stopwords),
                                          lexicon= 'custom'))
 
