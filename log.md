@@ -87,3 +87,6 @@ f also cleaning up the topic models again
 ## Mon 16 Oct 2017 11:15:10 BST
  - fixing problem with search_terms -- it was using & instead of | 
  - rebuilt package
+
+## Mon 16 Oct 2017 13:12:03 BST
+- should try structural topic models on the literature http://www.structuraltopicmodel.com/ 
