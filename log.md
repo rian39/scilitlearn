@@ -90,3 +90,6 @@ f also cleaning up the topic models again
 
 ## Mon 16 Oct 2017 13:12:03 BST
 - should try structural topic models on the literature http://www.structuraltopicmodel.com/ 
+
+## Thu 26 Oct 2017 08:10:56 BST
+- adding travis CI stuff 
