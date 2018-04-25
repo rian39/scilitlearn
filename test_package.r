@@ -1,5 +1,6 @@
 library(devtools)
 check()
+2
 document()
 build()
 install(upgrade_dependencies = FALSE)
@@ -67,4 +68,6 @@ cited_references_time(wos)
 term_graph(wos, 5, 'TI') 
 term_graph(wos, 50, 'AB') 
 term_graph(wos, 9, 'DE') 
+
+disciplines(wos)
 

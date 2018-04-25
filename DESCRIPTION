@@ -1,7 +1,7 @@
 Package: scilitlearn
-Title: What the Package Does (one line, title case)
+Title: Common Techniques for Analysis of Web of Science Data
 Version: 0.0.0.9000
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
+Authors@R: person("Adrian", "Mackenzie", email = "a.mackenzie@lancaster.ac.uk", role = c("aut", "cre"))
 Description: What the package does (one paragraph).
 Depends: R (>= 3.1.2)
 Encoding: UTF-8

@@ -94,3 +94,6 @@ f also cleaning up the topic models again
 ## Thu 26 Oct 2017 08:10:56 BST
 - adding travis CI stuff 
 - TODO: see if cowplot help arrange a set of useful graphs
+
+## Tue 24 Apr 2018 22:38:36 BST
+- been using the package again for GPU work; still needs tweaking; 
