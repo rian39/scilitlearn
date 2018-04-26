@@ -1,6 +1,5 @@
 library(devtools)
 check()
-2
 document()
 build()
 install(upgrade_dependencies = FALSE)
