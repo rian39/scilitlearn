@@ -97,3 +97,6 @@ f also cleaning up the topic models again
 
 ## Tue 24 Apr 2018 22:38:36 BST
 - been using the package again for GPU work; still needs tweaking; 
+
+## Thu 07 Jun 2018 10:20:12 BST
+- would be good if plotting functions returned the plot so that it could be modified 
