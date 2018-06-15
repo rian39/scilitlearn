@@ -55,6 +55,7 @@ load_directory <- function(dir) {
     return(df)
 }
 
+
 #' Load zipfile of WoS records
 #'
 #' This function assumes that all the files have been zipped and all quote marks removed

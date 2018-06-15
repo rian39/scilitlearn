@@ -1,4 +1,4 @@
-#' Add tot he stopword list 
+#' Add to the stopword list 
 #' @param wos: the dataframe of references
 #' @param extra_stopwords: any extra stopwords to exclude
 #' @keywords stopwords
